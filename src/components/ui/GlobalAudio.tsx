@@ -29,6 +29,6 @@ export default function GlobalAudio() {
   }, [])
 
   return (
-    <audio ref={audioRef} src="https://pdftolink.io/file/r2_dXNlcnMvZ3Vlc3QvOTdhNWM5NzMtYmM1NC00OGU2LWJjYTktZGFkOTQ2ZWQ4MDE5Lndhdg" preload="auto" />
+    <audio ref={audioRef} src="https://www.image2url.com/r2/default/audio/1776512072910-9ba54dee-e7be-4243-83a5-4a462fd956b3.wav" preload="auto" />
   )
 }
