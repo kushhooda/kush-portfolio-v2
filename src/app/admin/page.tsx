@@ -2,7 +2,7 @@ import prisma from '@/lib/prisma'
 import AdminClient from './AdminClient'
 import Overlay from '@/components/ui/Overlay'
 
-export const revalidate = 0
+export const dynamic = 'force-dynamic'
 
 export default async function AdminPage() {
   const profile = await prisma.profile.findFirst()
