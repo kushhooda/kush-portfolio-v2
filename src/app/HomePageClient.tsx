@@ -226,6 +226,54 @@ export default function HomePageClient({ profile, projects }: { profile: Profile
           </motion.div>
         </div>
       </section>
+
+      {/* SECTION 4: CONTACT */}
+      <section className="relative w-full min-h-screen py-24 flex flex-col justify-center items-center border-t border-white/10">
+        <motion.div 
+          initial={{ opacity: 0, scale: 0.9 }}
+          whileInView={{ opacity: 1, scale: 1 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.8 }}
+          className="text-center space-y-12 max-w-4xl px-8 relative z-10"
+        >
+          <div className="flex items-center justify-center gap-3 text-primary text-xs tracking-widest animate-pulse">
+            <div className="w-2 h-2 rounded-full bg-primary shadow-[0_0_8px_#ef4444]"></div>
+            CHANNEL OPEN
+          </div>
+
+          <h2 className="text-5xl md:text-8xl font-serif text-white tracking-tighter leading-tight">
+            What if we<br/>worked together?
+          </h2>
+
+          <p className="text-primary font-mono text-lg tracking-widest">
+            {profile.linkedin ? profile.linkedin.toLowerCase() : 'kushhooda'}@gmail.com
+          </p>
+
+          <div className="pt-8">
+            <a href={`mailto:kushhooda@gmail.com`} className="border border-white/20 hover:border-primary px-8 py-4 text-white hover:text-primary transition-colors inline-block tracking-widest bg-zinc-950 hover:bg-black uppercase font-mono text-sm">
+              [ INITIATE CONTACT ]
+            </a>
+          </div>
+
+          <div className="flex justify-center gap-8 pt-16 text-primary text-xs font-mono tracking-widest">
+            {profile.github && (
+              <a href={`https://github.com/${profile.github}`} target="_blank" rel="noreferrer" className="hover:text-white transition-colors">
+                [ GITHUB ]
+              </a>
+            )}
+            {profile.linkedin && (
+              <a href={`https://linkedin.com/in/${profile.linkedin}`} target="_blank" rel="noreferrer" className="hover:text-white transition-colors">
+                [ LINKEDIN ]
+              </a>
+            )}
+          </div>
+
+          <div className="pt-24 text-gray-600 text-[10px] font-mono tracking-widest uppercase flex flex-col gap-2">
+            <span>SECURE LINE ESTABLISHED</span>
+            <span>© 2026 KUSH HOODA</span>
+          </div>
+        </motion.div>
+      </section>
     </main>
   )
 }

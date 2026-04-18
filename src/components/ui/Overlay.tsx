@@ -52,31 +52,34 @@ export default function Overlay() {
       </div>
 
       {/* Center Top Dot */}
-      <div className="absolute top-12 left-1/2 -translate-x-1/2 w-3 h-3 rounded-full bg-white"></div>
+      <div className="absolute top-12 left-1/2 -translate-x-1/2 w-4 h-4 rounded-full bg-white z-50"></div>
+      
       {/* Laser line from center top to mouse */}
-      {/* We can do a pseudo laser with SVG */}
-      <svg className="absolute inset-0 w-full h-full" style={{ zIndex: -1 }}>
+      <svg className="absolute inset-0 w-full h-full pointer-events-none" style={{ zIndex: 45 }}>
         <line 
           x1="50%" 
           y1="54" 
           x2={coords.x} 
           y2={coords.y} 
           stroke="#ef4444" 
-          strokeWidth="1" 
-          strokeDasharray="4 4"
-          opacity="0.3"
+          strokeWidth="1.5"
+          opacity="0.8"
+          style={{ filter: 'drop-shadow(0px 0px 4px rgba(239, 68, 68, 0.8))' }}
         />
       </svg>
       
-      {/* Cursor coordinates near mouse */}
+      {/* Custom Cursor */}
       <div 
-        className="absolute flex items-center gap-2 text-primary transition-all duration-75 ease-out"
-        style={{ left: coords.x + 20, top: coords.y + 20 }}
+        className="fixed pointer-events-none z-50"
+        style={{ left: coords.x, top: coords.y, transform: 'translate(-50%, -50%)' }}
       >
-        <div className="w-2 h-2 bg-primary"></div>
-        <span className="text-[10px]">
+        {/* Red Square (Actual Cursor Center) */}
+        <div className="w-3 h-3 bg-primary"></div>
+        
+        {/* Offset Coordinates Text */}
+        <div className="absolute left-6 top-6 whitespace-nowrap text-primary text-sm font-mono tracking-widest drop-shadow-[0_0_2px_rgba(239,68,68,0.8)]">
           X: {coords.x} Y: {coords.y}
-        </span>
+        </div>
       </div>
     </div>
   )
