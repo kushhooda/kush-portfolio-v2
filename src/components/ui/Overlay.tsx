@@ -80,20 +80,6 @@ export default function Overlay() {
           style={{ filter: 'drop-shadow(0px 0px 4px rgba(239, 68, 68, 0.8))' }}
         />
       </svg>
-      
-      {/* Custom Cursor */}
-      <div 
-        className="fixed pointer-events-none z-50 transition-all duration-75"
-        style={{ left: coords.x, top: coords.y, transform: 'translate(-50%, -50%)' }}
-      >
-        {/* Cursor Shape */}
-        <div className={`transition-all duration-200 ${isHovering ? 'w-8 h-8 border border-primary bg-transparent' : 'w-3 h-3 bg-primary'}`}></div>
-        
-        {/* Offset Coordinates Text */}
-        <div className="absolute left-6 top-6 whitespace-nowrap text-primary text-sm font-mono tracking-widest drop-shadow-[0_0_2px_rgba(239,68,68,0.8)]">
-          X: {coords.x} Y: {coords.y}
-        </div>
-      </div>
     </div>
   )
 }
