@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { Playfair_Display, Space_Mono } from "next/font/google";
 import "./globals.css";
+import GlobalAudio from "@/components/ui/GlobalAudio";
 
 const playfair = Playfair_Display({
   subsets: ["latin"],
@@ -29,6 +30,7 @@ export default function RootLayout({
       className={`${playfair.variable} ${spaceMono.variable} h-full antialiased dark`}
     >
       <body className="min-h-full flex flex-col bg-black text-[#e5e5e5] font-mono selection:bg-red-500/30">
+        <GlobalAudio />
         <div className="pointer-events-none fixed inset-0 z-50 h-full w-full opacity-10 bg-[url('https://grainy-gradients.vercel.app/noise.svg')] mix-blend-overlay"></div>
         {children}
       </body>

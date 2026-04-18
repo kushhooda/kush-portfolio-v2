@@ -1,7 +1,12 @@
 'use client'
 
 import { motion } from 'framer-motion'
-import WireframeCube from '@/components/3d/WireframeCube'
+import dynamic from 'next/dynamic'
+
+const WireframeCube = dynamic(() => import('@/components/3d/WireframeCube'), {
+  ssr: false,
+  loading: () => <div className="text-primary font-mono text-xs animate-pulse">[ LOADING_3D_ASSETS ]</div>
+})
 import Overlay from '@/components/ui/Overlay'
 import { Profile, Project } from '@prisma/client'
 
