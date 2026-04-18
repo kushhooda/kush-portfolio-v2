@@ -7,7 +7,7 @@ import { redirect } from 'next/navigation'
 export const dynamic = 'force-dynamic'
 
 export default async function AdminPage() {
-  const cookieStore = cookies()
+  const cookieStore = await cookies()
   const auth = cookieStore.get('admin_auth')
   
   if (!auth || auth.value !== 'granted') {

@@ -73,7 +73,8 @@ export async function verifyAdminLogin(password: string) {
   }
 
   if (password === correctPassword) {
-    cookies().set('admin_auth', 'granted', {
+    const cookieStore = await cookies()
+    cookieStore.set('admin_auth', 'granted', {
       httpOnly: true,
       secure: process.env.NODE_ENV === 'production',
       sameSite: 'strict',
