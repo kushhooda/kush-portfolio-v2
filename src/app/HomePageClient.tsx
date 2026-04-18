@@ -92,15 +92,15 @@ export default function HomePageClient({ profile, projects }: { profile: Profile
                 
                 <h3 className="text-2xl font-bold mb-6 font-mono text-center tracking-widest">{profile.name.toUpperCase()}</h3>
                 
-                <div className="w-full aspect-square bg-zinc-900 border border-white/20 relative flex items-center justify-center overflow-hidden mb-8">
-                  <div className="absolute inset-0 border-2 border-primary/50 opacity-100 m-4 transition-all duration-500 group-hover:scale-95">
+                <div className="w-full aspect-square bg-black border border-white/20 relative flex items-center justify-center overflow-hidden mb-8">
+                  <div className="absolute inset-0 border-2 border-primary/50 opacity-100 m-4 transition-all duration-500 group-hover:scale-95 z-20 pointer-events-none">
                     <div className="absolute top-0 left-0 w-4 h-4 border-t-2 border-l-2 border-primary -translate-x-1 -translate-y-1"></div>
                     <div className="absolute top-0 right-0 w-4 h-4 border-t-2 border-r-2 border-primary translate-x-1 -translate-y-1"></div>
                     <div className="absolute bottom-0 left-0 w-4 h-4 border-b-2 border-l-2 border-primary -translate-x-1 translate-y-1"></div>
                     <div className="absolute bottom-0 right-0 w-4 h-4 border-b-2 border-r-2 border-primary translate-x-1 translate-y-1"></div>
                   </div>
-                  <div className="absolute top-1/2 left-0 w-full h-[1px] bg-primary/30 z-10 animate-[pulse_2s_infinite]"></div>
-                  <span className="text-zinc-600 font-mono text-sm">[IMAGE CLASSIFIED]</span>
+                  <div className="absolute top-1/2 left-0 w-full h-[1px] bg-primary/30 z-20 pointer-events-none animate-[pulse_2s_infinite]"></div>
+                  <img src="/logo.png" alt="KH Logo" className="absolute inset-0 w-full h-full object-cover z-10 p-2" />
                 </div>
 
                 <div className="grid grid-cols-2 gap-6 text-xs text-gray-400">
