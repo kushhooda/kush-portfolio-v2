@@ -1,6 +1,7 @@
 'use client'
 
-import { motion } from 'framer-motion'
+import { useState } from 'react'
+import { motion, AnimatePresence } from 'framer-motion'
 import dynamic from 'next/dynamic'
 
 const WireframeCube = dynamic(() => import('@/components/3d/WireframeCube'), {
@@ -12,6 +13,7 @@ import { Profile, Project } from '@prisma/client'
 
 export default function HomePageClient({ profile, projects }: { profile: Profile, projects: Project[] }) {
   const [firstName, lastName] = profile.name.split(' ')
+  const [showContactPopup, setShowContactPopup] = useState(false)
 
   return (
     <main className="scanline relative bg-black selection:bg-primary/30 font-mono text-[#e5e5e5]">
@@ -246,34 +248,87 @@ export default function HomePageClient({ profile, projects }: { profile: Profile
           </h2>
 
           <p className="text-primary font-mono text-lg tracking-widest">
-            {profile.linkedin ? profile.linkedin.toLowerCase() : 'kushhooda'}@gmail.com
+            hello@kshh.me
           </p>
 
           <div className="pt-8">
-            <a href={`mailto:kushhooda@gmail.com`} className="border border-white/20 hover:border-primary px-8 py-4 text-white hover:text-primary transition-colors inline-block tracking-widest bg-zinc-950 hover:bg-black uppercase font-mono text-sm">
+            <button 
+              onClick={() => setShowContactPopup(true)} 
+              className="border border-white/20 hover:border-primary px-8 py-4 text-white hover:text-primary transition-colors inline-block tracking-widest bg-zinc-950 hover:bg-black uppercase font-mono text-sm cursor-pointer"
+            >
               [ INITIATE CONTACT ]
-            </a>
+            </button>
           </div>
 
           <div className="flex justify-center gap-8 pt-16 text-primary text-xs font-mono tracking-widest">
-            {profile.github && (
-              <a href={`https://github.com/${profile.github}`} target="_blank" rel="noreferrer" className="hover:text-white transition-colors">
-                [ GITHUB ]
-              </a>
-            )}
+            <a href={`https://github.com/kushhooda`} target="_blank" rel="noreferrer" className="hover:text-white transition-colors cursor-pointer">
+              [ GITHUB ]
+            </a>
             {profile.linkedin && (
-              <a href={`https://linkedin.com/in/${profile.linkedin}`} target="_blank" rel="noreferrer" className="hover:text-white transition-colors">
+              <a href={`https://linkedin.com/in/${profile.linkedin}`} target="_blank" rel="noreferrer" className="hover:text-white transition-colors cursor-pointer">
                 [ LINKEDIN ]
               </a>
             )}
           </div>
 
-          <div className="pt-24 text-gray-600 text-[10px] font-mono tracking-widest uppercase flex flex-col gap-2">
-            <span>SECURE LINE ESTABLISHED</span>
-            <span>© 2026 KUSH HOODA</span>
+          <div className="pt-24 text-gray-600 font-mono tracking-widest uppercase flex flex-col gap-2">
+            <span className="text-xs">SECURE LINE ESTABLISHED</span>
+            <span className="text-lg font-bold text-gray-400">© 2026 KUSH HOODA</span>
           </div>
         </motion.div>
       </section>
+
+      {/* Contact Popup */}
+      <AnimatePresence>
+        {showContactPopup && (
+          <motion.div 
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            className="fixed inset-0 z-[110] bg-black/80 backdrop-blur-sm flex items-center justify-center p-4"
+          >
+            <motion.div 
+              initial={{ scale: 0.9, y: 20 }}
+              animate={{ scale: 1, y: 0 }}
+              exit={{ scale: 0.9, y: 20 }}
+              className="border border-primary bg-zinc-950 p-8 max-w-md w-full relative"
+              style={{ boxShadow: '0 0 40px rgba(239, 68, 68, 0.15)' }}
+            >
+              <button 
+                onClick={() => setShowContactPopup(false)}
+                className="absolute top-4 right-4 text-gray-500 hover:text-primary transition-colors cursor-pointer"
+              >
+                [ CLOSE ]
+              </button>
+              
+              <div className="absolute -top-3 left-6 bg-black px-2 text-primary text-xs tracking-widest">
+                INCOMING_CONNECTION
+              </div>
+
+              <h3 className="text-2xl font-serif text-white mb-6 mt-4 tracking-wider">SECURE COMMS</h3>
+              
+              <p className="text-gray-400 font-mono text-sm mb-8 leading-relaxed">
+                Direct channel requested. Please route all transmission logs and inquiries to the following secure address:
+              </p>
+
+              <div className="bg-black border border-white/10 p-4 text-center mb-8">
+                <a href="mailto:hello@kshh.me" className="text-primary font-mono text-lg tracking-widest hover:text-white transition-colors cursor-pointer">
+                  hello@kshh.me
+                </a>
+              </div>
+
+              <div className="text-right">
+                <button 
+                  onClick={() => setShowContactPopup(false)}
+                  className="text-xs text-gray-500 hover:text-primary tracking-widest transition-colors cursor-pointer"
+                >
+                  [ END_TRANSMISSION ]
+                </button>
+              </div>
+            </motion.div>
+          </motion.div>
+        )}
+      </AnimatePresence>
     </main>
   )
 }
