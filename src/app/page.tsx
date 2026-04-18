@@ -1,7 +1,7 @@
 import prisma from '@/lib/prisma'
 import HomePageClient from './HomePageClient'
 
-export const dynamic = 'force-dynamic'
+export const revalidate = 60
 
 export default async function Home() {
   const profile = await prisma.profile.findFirst()
