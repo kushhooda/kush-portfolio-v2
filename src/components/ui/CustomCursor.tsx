@@ -31,7 +31,7 @@ export default function CustomCursor() {
 
   return (
     <div 
-      className="fixed pointer-events-none z-[9999]"
+      className="hidden md:block fixed pointer-events-none z-[9999]"
       style={{ left: coords.x, top: coords.y }}
     >
       {/* Cursor Shape */}

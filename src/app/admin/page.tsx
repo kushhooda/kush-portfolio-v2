@@ -1,10 +1,19 @@
 import prisma from '@/lib/prisma'
 import AdminClient from './AdminClient'
 import Overlay from '@/components/ui/Overlay'
+import { cookies } from 'next/headers'
+import { redirect } from 'next/navigation'
 
 export const dynamic = 'force-dynamic'
 
 export default async function AdminPage() {
+  const cookieStore = cookies()
+  const auth = cookieStore.get('admin_auth')
+  
+  if (!auth || auth.value !== 'granted') {
+    redirect('/admin/login')
+  }
+
   const profile = await prisma.profile.findFirst()
   const projects = await prisma.project.findMany({
     orderBy: { order: 'asc' },

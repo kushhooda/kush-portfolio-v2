@@ -61,3 +61,26 @@ export async function deleteProject(id: string) {
     return { success: false, error: 'Failed to delete project' }
   }
 }
+
+import { cookies } from 'next/headers'
+
+export async function verifyAdminLogin(password: string) {
+  const correctPassword = process.env.ADMIN_PASSWORD
+  
+  if (!correctPassword) {
+    console.error("ADMIN_PASSWORD env var is not set!")
+    return { success: false, error: "System misconfigured. Check server logs." }
+  }
+
+  if (password === correctPassword) {
+    cookies().set('admin_auth', 'granted', {
+      httpOnly: true,
+      secure: process.env.NODE_ENV === 'production',
+      sameSite: 'strict',
+      maxAge: 60 * 60 * 24 * 7 // 1 week
+    })
+    return { success: true }
+  } else {
+    return { success: false, error: "ACCESS DENIED. INCORRECT OVERRIDE CODE." }
+  }
+}

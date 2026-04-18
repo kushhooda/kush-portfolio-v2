@@ -17,11 +17,15 @@ body {
 body {
   background-color: var(--color-background);
   color: var(--color-foreground);
-  cursor: none;
 }
 
-* {
-  cursor: none !important;
+@media (pointer: fine) {
+  body {
+    cursor: none;
+  }
+  * {
+    cursor: none !important;
+  }
 }
 
 /* Custom scrollbar */

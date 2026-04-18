@@ -68,7 +68,7 @@ export default function Overlay() {
       <div className="absolute top-12 left-1/2 -translate-x-1/2 w-4 h-4 rounded-full bg-white z-50"></div>
       
       {/* Laser line from center top to mouse */}
-      <svg className="absolute inset-0 w-full h-full pointer-events-none" style={{ zIndex: 45 }}>
+      <svg className="hidden md:block absolute inset-0 w-full h-full pointer-events-none" style={{ zIndex: 45 }}>
         <line 
           x1="50%" 
           y1="54" 
